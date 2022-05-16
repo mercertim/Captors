@@ -10,4 +10,4 @@ Captor preprocessing to determine based wise error rate in the Captor sequences 
 Captor preprocessing to determine pore wise error rate in the Captor sequences using the Captor_perPore_processing.sh script (BASH and python).
 Sample preprocessing to determine basewise errors in target genome using the Captor_MetaSequin_perBase_processing.sh script (BASH and python).
 Caculate Captor and sample counts using the MetaSequin_ONT_count.R and Captor_ONT_count.R scripts (R).
-Sample count normalisation using Captors and RUVg the Metasequin_Captor_normalisation.R script (R)
+Sample count normalisation using Captors and RUVg the Captor_MetaSequin_normalisation.R script (R)
