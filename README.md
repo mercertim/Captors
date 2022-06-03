@@ -2,9 +2,21 @@
 Analysis scripts for Captor pipeline
 
 ## Captor analysis pipeline
-These scripts a required for the analysis of ONT data using Captors. Data files for use with these scripts are contained in this repository. Input and output directories need to be specified by the user along with reference files according to the genome of interest (here we used the Metasequin sequences).
+These scripts a required for the analysis of ONT data using Captors. Demo data (fastq with 2000 entries) and reference files for use with these scripts are contained in this repository. Input and output directories need to be specified by the user along with reference files according to the genome of interest (here we used the Metasequin sequences).
 
 ## System requirements
+The Captor analysis is performed by third party software and does not require installation beyond the below dependencies. We recommend using a high performance computing (HPC) cluster for the preprocessing steps. The preprocessing has been tested on a sungrid engine HPC 64-bit running python (3.6) and R (4.0.2).
+
+Dependencies command-line:
+fastp https://github.com/OpenGene/fastp
+minimap2 https://github.com/lh3/minimap2
+samtools http://www.htslib.org/
+bamtools https://github.com/pezmaster31/bamtools
+
+Dependencies Python:
+pip install pysamstats
+
+Downstream analysis can be run on a standard laptop computer and was tested on an Apple Macbook 16G RAM, 500GB memory. Dependencies R: 
 
 ## Installation guide
 
