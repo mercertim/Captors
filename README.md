@@ -19,7 +19,7 @@ pip install pysamstats (v1.1.2)
 Downstream analysis in R can be run on a standard laptop computer and was tested on an Apple Macbook 16G RAM, 500GB memory.
 
 ## Demo
-A demo dataset for preprocessing containing a Captor library is included.
+A demo dataset for preprocessing containing a Captor library is containged in the file demo_data.fastq (2000 reads). To run:
 
 git clone https://github.com/mercertim/Captors.git
 
@@ -31,7 +31,7 @@ and run the ./Captor_MetaSequin_perBase_processing.sh
 
 The expected output can be found in the file demo_data_captor.bam.bed.tsv
 
-## Instructions for use
+## Instructions for analysis
 NOTE: Generalised scipts for downstream analysis will need to be customised depending on your sample genome. The pipeline is run as follows:
 1. Sample preprocessing to determine basewise errors in Captore sequences and target genome using the Captor_MetaSequin_perBase_processing.sh script (BASH and python).
 
