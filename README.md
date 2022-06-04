@@ -9,9 +9,13 @@ The Captor analysis is performed by third party software and does not require in
 
 Dependencies command-line:
 fastp (v0.20.0) https://github.com/OpenGene/fastp
+
 minimap2 (v2.17-r941) https://github.com/lh3/minimap2
+
 samtools (using htslib v1.9) http://www.htslib.org/
+
 bamtools (v2.2.3) https://github.com/pezmaster31/bamtools
+
 
 Dependencies Python:
 pip install pysamstats (v1.1.2)
