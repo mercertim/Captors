@@ -14,15 +14,15 @@
 # analyzePile.py
 
 # Paths
-inDir = path/to/sample
-outDir = path/to/output
-refDir = path/to/reference_sequences
+inDir=. #path/to/sample
+outDir=. #path/to/output
+refDir=. #path/to/reference_sequences
 
 # Get per base error statistics for Captors
 # --------------------------------------------------------------------------
 
 # Create sample array
-sample_arr=(Sample_1 Sample_2 Sample_3)
+sample_arr=(demo_data)
 
 # Loop for all samples in array
 for sample in ${sample_arr[@]}; do
@@ -31,19 +31,19 @@ for sample in ${sample_arr[@]}; do
   mkdir $outDir/$sample
   
   # Trim reads to first 500bp
-  fastp --disable_adapter_trimming --disable_trim_poly_g --disable_quality_filtering --max_len1 500 --thread 16 -i $inDir/$sample/$sample.fastq -o $outDir/$sample/$sample'_combined_first_500.fastq'
+  fastp --disable_adapter_trimming --disable_trim_poly_g --disable_quality_filtering --max_len1 500 --thread 16 -i $inDir/$sample.fastq -o $outDir/$sample/$sample'_combined_first_500.fastq'
   
   # Align to Captor sequence with minimap2 and sort bam
-  minimap2 -ax map-ont -t 8 $refDir/Captors.fa $outDir/$sample/*'_combined_first_500.fastq' | samtools sort - > $outDir/$sample/$sample'_adaptor.bam'
+  minimap2 -ax map-ont -t 8 $refDir/Captors.fa $outDir/$sample/*'_combined_first_500.fastq' | samtools sort - > $outDir/$sample/$sample'_captor.bam'
   
   # Index bam file
-  samtools index $outDir/$sample/$sample'_adaptor.bam'
+  samtools index $outDir/$sample/$sample'_captor.bam'
   
   # Get pileup stats per base for each adaptor
-  pysamstats --fasta $refDir/Captors.fa --type variation $outDir/$sample/$sample'_adaptor.bam' > $outDir/$sample/$sample'_adaptor.bam.bed'
+  pysamstats --fasta $refDir/Captors.fa --type variation $outDir/$sample/$sample'_captor.bam' > $outDir/$sample/$sample'_captor.bam.bed'
   
   # Collate pileup stats in dataframe
-  python3 analyzePile.py $outDir/$sample/$sample'_adaptor.bam.bed' > $outDir/$sample/$sample'_adaptor.bam.bed.tsv'
+  python3 analyzePile.py $outDir/$sample/$sample'_captor.bam.bed' > $outDir/$sample/$sample'_captor.bam.bed.tsv'
   
 done
 
@@ -54,10 +54,10 @@ done
 for sample in ${sample_arr[@]}; do
 
   # Align to Metasequins sequence with minimap2 and sort bam
-  minimap2 -ax map-ont -t 8 $refDir/MetaSequin.fa $inDir/$sample/$sample.fastq | samtools sort - > $outDir/$sample/$sample'_metasequin.bam'
+  minimap2 -ax map-ont -t 8 $refDir/MetaSequin.fa $inDir/$sample.fastq | samtools sort - > $outDir/$sample/$sample'_metasequin.bam'
   
   # Index bam file
-  samtools index $outDir/$sample/$sample.bam
+  samtools index $outDir/$sample/$sample'_metasequin.bam'
   
   # Get pileup stats per base for each Metasequins
   pysamstats --fasta $refDir/MetaSequin.fa --type variation $outDir/$sample/$sample'_metasequin.bam' > $outDir/$sample/$sample'_metasequin.bam.bed'
